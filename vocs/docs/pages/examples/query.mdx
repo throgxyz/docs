@@ -1,0 +1,15 @@
+# Querying chain state
+
+A read-only program: connect to a node and inspect a block, an account, its
+resources, delegations, and pending rewards. No private key required.
+
+To run this example:
+
+- Clone the [tronz](https://github.com/deszhou/tronz) repository.
+- Run: `cargo run -p examples --example query`
+
+```rust
+// [!include ~/snippets/examples/query.rs]
+```
+
+See [Reading chain state](/providers/queries) for the full list of read methods.

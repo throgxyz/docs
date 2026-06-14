@@ -1,0 +1,125 @@
+---
+title: tronz · Rust SDK for TRON
+description: tronz is an idiomatic, async-first Rust SDK for the TRON network, inspired by alloy.
+content:
+  width: 100%
+layout: landing
+showLogo: false
+---
+
+import { HomePage } from "vocs";
+
+<div className="max-w-[1120px] mx-auto vp-doc relative px-[24px] mb-[64px] mt-[32px] md:px-0 md:mb-[32px]">
+  <div className="pt-[48px] max-sm:pt-0">
+    <div className="max-sm:px-0 flex justify-between z-0 max-md:justify-center max-md:flex-col max-md:items-center max-md:space-y-6">
+      <div className="space-y-8 max-w-[440px] flex flex-col items-start max-md:items-center">
+        <div className="font-semibold text-[72px] text-[#000000] max-sm:text-[54px] max-md:text-center dark:text-white">tronz</div>
+        <div className="font-regular text-[21px] max-sm:text-[18px] text-[#919193] max-md:text-center">
+          Connect applications to the <span className="text-black dark:text-white">TRON</span> network using <span className="text-black dark:text-white">idiomatic</span>, <span className="text-black dark:text-white">async-first</span> Rust APIs.
+        </div>
+        <div className="flex justify-center space-x-2">
+          <HomePage.Button href="/introduction/getting-started" variant="accent">Get started</HomePage.Button>
+          <HomePage.Button href="https://github.com/deszhou/tronz">GitHub</HomePage.Button>
+        </div>
+      </div>
+      <div className="flex flex-col justify-between w-[440px] space-y-10 max-lg:w-[300px]">
+        <div id="home-install" className="h-full">
+
+```bash [cargo]
+cargo add tronz --features full
+```
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<article className="vocs_Content max-w-5xl mx-auto">
+
+# At a glance
+
+:::code-group
+
+```rust [query.rs]
+use tronz::{ProviderBuilder, TronProvider, TRONGRID_MAINNET};
+
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    // Connect to a TRON gRPC endpoint.
+    let provider = ProviderBuilder::new().on_grpc(TRONGRID_MAINNET).await?;
+
+    // Read the latest block.
+    let block = provider.get_now_block().await?;
+    println!("block {} @ {}ms", block.number, block.timestamp);
+
+    Ok(())
+}
+```
+
+```rust [transfer.rs]
+use tronz::{LocalSigner, ProviderBuilder, TronProvider, TronSigner, Trx, TRONGRID_NILE};
+
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    let signer = LocalSigner::from_hex("PRIVATE_KEY_HEX")?;
+    let from = signer.address();
+
+    let provider = ProviderBuilder::new()
+        .with_recommended_fillers()
+        .with_signer(signer)
+        .on_grpc(TRONGRID_NILE)
+        .await?;
+
+    // Build, sign, and broadcast in one chain.
+    let pending = provider.send_trx().to(from).amount(Trx::from_sun(1_000_000)?).send().await?;
+
+    let receipt = pending.get_receipt().await?;
+    println!("status: {:?}", receipt.status);
+    Ok(())
+}
+```
+
+```rust [trc20.rs]
+use tronz::{ProviderBuilder, TRONGRID_MAINNET};
+use tronz::contract::Trc20Ext;
+
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    let provider = ProviderBuilder::new().on_grpc(TRONGRID_MAINNET).await?;
+
+    let usdt: tronz::Address = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t".parse()?;
+    let token = provider.trc20(usdt);
+
+    println!("{} ({})", token.name().await?, token.symbol().await?);
+    Ok(())
+}
+```
+
+:::
+
+# Features
+
+- **TRON-native primitives** — `Address` (base58check `T...` and hex), `Trx`/sun amounts, and `ResourceCode`.
+- **Builder-style provider** — compose a provider with fillers and a signer, then connect over gRPC.
+- **Lazy transaction builders** — `send_trx()`, `freeze_balance()`, `delegate_resource()`, and more do no I/O until `.send()`.
+- **Stake 2.0 support** — freeze, unfreeze, delegate, undelegate, and claim rewards.
+- **TRC20 / TRC721 bindings** — ABI-compatible with EVM tokens, generated via alloy's `sol!` macro.
+- **Reuses alloy** — `U256`, `Bytes`, and ABI types come straight from `alloy-primitives` / `alloy-sol-types`.
+
+# Crates
+
+| Crate | Description |
+| --- | --- |
+| `tronz` | Meta-crate re-exporting all sub-crates |
+| `tronz-primitives` | `Address`, `Trx`, `ResourceCode`, signatures |
+| `tronz-signer` | `TronSigner` trait and `LocalSigner` |
+| `tronz-provider` | Transport, provider, fillers, and domain types |
+| `tronz-contract` | TRC20 / TRC721 ABI bindings |
+
+# Community
+
+- Report bugs or request features on [GitHub Issues](https://github.com/deszhou/tronz/issues).
+- Contributions are welcome — see [CONTRIBUTING.md](https://github.com/deszhou/tronz/blob/main/CONTRIBUTING.md).
+
+</article>

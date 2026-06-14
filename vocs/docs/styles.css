@@ -1,0 +1,7 @@
+:root {
+  --vocs-color_accent: #c6291f;
+}
+
+:root.dark {
+  --vocs-color_accent: #ff5c52;
+}
