@@ -2,6 +2,7 @@ import { defineConfig } from 'vocs/config'
 import { sidebar } from './sidebar'
 
 export default defineConfig({
+  basePath: '/docs',
   title: 'tronz',
   description:
     'An idiomatic, async-first Rust SDK for the TRON network, inspired by alloy.',
