@@ -97,4 +97,4 @@ let bal_call = encode_balance_of(who);
 # }
 ```
 
-See the full runnable version in [Examples → TRC20 tokens](/examples/trc20).
+See the full runnable version in [Examples → TRC20](/examples/trc20/trc20).

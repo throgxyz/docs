@@ -1,6 +1,6 @@
 # Installation
 
-[tronz](https://github.com/deszhou/tronz) is published as a meta-crate that
+[tronz](https://github.com/throgxyz/tronz) is published as a meta-crate that
 re-exports its sub-crates. The quickest way to get everything is the `full`
 feature:
 
@@ -35,7 +35,7 @@ only compile what you use:
 | `contract` | TRC20 / TRC721 bindings (implies `provider`) |
 
 For a complete and up-to-date list, see the
-[`tronz` crate's `Cargo.toml`](https://github.com/deszhou/tronz/blob/main/crates/tronz/Cargo.toml).
+[`tronz` crate's `Cargo.toml`](https://github.com/throgxyz/tronz/blob/main/crates/tronz/Cargo.toml).
 
 ## Supported Rust versions (MSRV)
 

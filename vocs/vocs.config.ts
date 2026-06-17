@@ -12,28 +12,28 @@ export default defineConfig({
   sidebar,
   iconUrl: { light: '/favicon.png', dark: '/favicon.png' },
   socials: [
-    { icon: 'github', link: 'https://github.com/deszhou/tronz' },
+    { icon: 'github', link: 'https://github.com/throgxyz/tronz' },
   ],
   topNav: [
     { text: 'Docs', link: '/introduction/getting-started' },
-    { text: 'Examples', link: '/examples/transfer_trx' },
+    { text: 'Examples', link: '/examples/transfers/transfer_trx' },
     { text: 'docs.rs', link: 'https://docs.rs/tronz/latest/tronz/' },
     {
       text: '0.1.0',
       items: [
         {
           text: 'Changelog',
-          link: 'https://github.com/deszhou/tronz/blob/main/CHANGELOG.md',
+          link: 'https://github.com/throgxyz/tronz/blob/main/CHANGELOG.md',
         },
         {
           text: 'Contributing',
-          link: 'https://github.com/deszhou/tronz/blob/main/CONTRIBUTING.md',
+          link: 'https://github.com/throgxyz/tronz/blob/main/CONTRIBUTING.md',
         },
       ],
     },
   ],
   editLink: {
-    link: 'https://github.com/deszhou/tronz/edit/main/docs/vocs/docs/pages/:path',
+    link: 'https://github.com/throgxyz/tronz/edit/main/docs/vocs/docs/pages/:path',
     text: 'Suggest changes on GitHub',
   },
 })

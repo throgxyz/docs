@@ -91,4 +91,4 @@ to fund your account before sending.
 - Learn how providers are composed in [Provider builder](/providers/provider-builder).
 - Follow the [transaction lifecycle](/transactions/lifecycle) from build to receipt.
 - Interact with tokens in [TRC20 tokens](/contracts/trc20).
-- Browse runnable [Examples](/examples/query).
+- Browse runnable [Examples](/examples/queries/query).

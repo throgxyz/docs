@@ -82,4 +82,4 @@ async fn main() -> anyhow::Result<()> {
 }
 ```
 
-See the full runnable version in [Examples → Transferring TRX](/examples/transfer_trx).
+See the full runnable version in [Examples → Transfers](/examples/transfers/transfer_trx).

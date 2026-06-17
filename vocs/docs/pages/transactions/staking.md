@@ -102,4 +102,4 @@ right now. `cancel_all_unfreeze()` cancels all pending unfreezes and re-stakes
 them.
 :::
 
-See the full runnable version in [Examples → Staking and delegation](/examples/stake).
+See the full runnable version in [Examples → Staking](/examples/staking/stake).

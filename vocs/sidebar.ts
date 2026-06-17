@@ -1,4 +1,5 @@
 import type { Sidebar } from "./types";
+import { exampleItems } from "./example-items";
 
 export const sidebar: Sidebar = [
   {
@@ -53,11 +54,6 @@ export const sidebar: Sidebar = [
   },
   {
     text: 'Examples',
-    items: [
-      { text: 'Querying chain state', link: '/examples/query' },
-      { text: 'Transferring TRX', link: '/examples/transfer_trx' },
-      { text: 'TRC20 tokens', link: '/examples/trc20' },
-      { text: 'Staking and delegation', link: '/examples/stake' },
-    ],
+    items: exampleItems,
   },
 ];
