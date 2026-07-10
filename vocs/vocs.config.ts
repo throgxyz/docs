@@ -6,11 +6,11 @@ export default defineConfig({
   title: 'tronz',
   description:
     'An idiomatic, async-first Rust SDK for the TRON network, inspired by alloy.',
-  logoUrl: '/tronz-logo.png',
+  logoUrl: '/docs/tronz-logo.png',
   renderStrategy: 'full-static',
   srcDir: 'docs',
   sidebar,
-  iconUrl: { light: '/favicon.png', dark: '/favicon.png' },
+  iconUrl: { light: '/docs/favicon.png', dark: '/docs/favicon.png' },
   socials: [
     { icon: 'github', link: 'https://github.com/throgxyz/tronz' },
   ],
