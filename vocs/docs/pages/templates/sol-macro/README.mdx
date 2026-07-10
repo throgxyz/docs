@@ -1,0 +1,9 @@
+## Sol macro
+
+Generate type-safe contract bindings with the `tron_sol!` macro: define a
+Solidity interface (mixing bare `struct`/`enum` items and forwarded
+`#[derive(...)]` attributes) to get a provider-bound `Instance` with typed
+methods, and query typed events through the generated per-event filters.
+
+- [Type-safe bindings from a Solidity interface](/examples/sol-macro/tron_sol_bindings)
+- [Query typed events with generated filters](/examples/sol-macro/tron_sol_events)

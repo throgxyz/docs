@@ -32,6 +32,11 @@ export const exampleItems: SidebarItem[] = [
         { text: 'Sign and verify a hash', link: '/examples/signers/signer_local' },
         { text: 'Derive from a BIP-39 mnemonic', link: '/examples/signers/signer_mnemonic' },
         { text: 'Encrypt and decrypt a keystore', link: '/examples/signers/signer_keystore' },
+        { text: 'Sign with an AWS KMS key', link: '/examples/signers/signer_aws' },
+    ]},
+    { text: 'Sol macro', collapsed: true, link: '/examples/sol-macro/README', items: [
+        { text: 'Type-safe bindings from a Solidity interface', link: '/examples/sol-macro/tron_sol_bindings' },
+        { text: 'Query typed events with generated filters', link: '/examples/sol-macro/tron_sol_events' },
     ]},
     { text: 'Staking', collapsed: true, link: '/examples/staking/README', items: [
         { text: 'Stake 2.0: freeze, delegate, claim', link: '/examples/staking/stake' },
@@ -61,5 +66,10 @@ export const exampleItems: SidebarItem[] = [
         { text: 'Approve and allowance', link: '/examples/trc20/trc20_approve' },
         { text: 'transferFrom flow', link: '/examples/trc20/trc20_transfer_from' },
         { text: 'Decode Transfer events', link: '/examples/trc20/trc20_decode_transfer_event' },
+    ]},
+    { text: 'TRC721 (NFT)', collapsed: true, link: '/examples/trc721/README', items: [
+        { text: 'Query NFT metadata and ownership', link: '/examples/trc721/trc721_query' },
+        { text: 'Transfer an NFT', link: '/examples/trc721/trc721_transfer' },
+        { text: 'Approve a spender or operator', link: '/examples/trc721/trc721_approve' },
     ]},
 ]

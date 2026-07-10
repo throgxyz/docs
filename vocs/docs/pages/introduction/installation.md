@@ -12,7 +12,7 @@ Or add it to your `Cargo.toml` directly:
 
 ```toml
 [dependencies]
-tronz = { version = "0.1", features = ["full"] }
+tronz = { version = "0.3", features = ["full"] }
 ```
 
 tronz is async-first and built on [tokio](https://tokio.rs), so you will also
@@ -32,7 +32,8 @@ only compile what you use:
 | `full` | Everything below |
 | `provider` | The provider, gRPC transport, and fillers |
 | `signer` | `TronSigner` and `LocalSigner` |
-| `contract` | TRC20 / TRC721 bindings (implies `provider`) |
+| `contract` | TRC20 / TRC721 bindings and `tron_sol!` (implies `provider`) |
+| `signer-aws` | AWS KMS-backed `AwsSigner` |
 
 For a complete and up-to-date list, see the
 [`tronz` crate's `Cargo.toml`](https://github.com/throgxyz/tronz/blob/main/crates/tronz/Cargo.toml).
