@@ -23,7 +23,7 @@ println!("hash      : 0x{}", hex::encode(block.hash));
 # async fn run(provider: impl tronz::TronProvider, address: tronz::Address) -> anyhow::Result<()> {
 let account = provider.get_account(address).await?;
 
-println!("balance   : {} TRX", account.balance.as_trx());
+println!("balance   : {} TRX", account.balance);
 println!("name      : {}", account.name);
 println!("activated : {}", account.is_activated);
 
@@ -77,7 +77,12 @@ println!("pending reward : {}", reward);
 ```rust
 # async fn run(provider: impl tronz::TronProvider, tx_id: tronz::primitives::TxId) -> anyhow::Result<()> {
 let tx = provider.get_transaction(tx_id).await?;
-let info = provider.get_transaction_info(tx_id).await?;
+
+// `get_transaction_info` returns `None` until the node has indexed the tx.
+let info = provider
+    .get_transaction_info(tx_id)
+    .await?
+    .ok_or_else(|| anyhow::anyhow!("transaction not found or not yet confirmed"))?;
 
 println!("block  : {}", info.block_number);
 println!("status : {:?}", info.status);
@@ -85,7 +90,9 @@ println!("energy : {}", info.energy_usage);
 # Ok(()) }
 ```
 
-`TransactionInfo` is the receipt: block number/timestamp, `status`
+`get_transaction_info` returns `Option<TransactionInfo>` — `None` while the
+transaction is still unconfirmed. Once present, `TransactionInfo` is the
+receipt: block number/timestamp, `status`
 (`Success`/`Failed`), energy and bandwidth usage and fees, the detailed
 `contract_result`, emitted `logs`, and a `revert_reason` when a contract
 reverts. See [Transaction lifecycle](/transactions/lifecycle).

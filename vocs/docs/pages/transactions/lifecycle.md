@@ -64,8 +64,9 @@ let info = pending
 ```
 
 If the transaction isn't confirmed within the limit, you get
-`Error::ConfirmationTimeout` — the transaction may still confirm later, so you
-can re-query it with `get_transaction_info(tx_id)`.
+`PendingTransactionError::ConfirmationTimeout` — the transaction may still
+confirm later, so you can re-query it with `get_transaction_info(tx_id)` (which
+returns `None` until it is indexed).
 
 ## Reading the receipt
 

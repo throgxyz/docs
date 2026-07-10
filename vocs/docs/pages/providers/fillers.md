@@ -67,7 +67,7 @@ use tronz::{ProviderBuilder, Trx, TRONGRID_NILE};
 # async fn run() -> anyhow::Result<()> {
 let provider = ProviderBuilder::new()
     .with_tapos()
-    .with_fee_limit(Trx::from_trx(100.0)?)  // higher cap for heavy contract calls
+    .with_fee_limit("100".parse()?)  // higher cap for heavy contract calls
     .on_grpc(TRONGRID_NILE)
     .await?;
 # Ok(()) }

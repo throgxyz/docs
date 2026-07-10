@@ -39,7 +39,7 @@ error from `.send()`.
 let pending = provider
     .send_trx()
     .to(to)
-    .amount(Trx::from_trx(2.5)?)
+    .amount("2.5".parse()?)
     .memo("gm")
     .send()
     .await?;

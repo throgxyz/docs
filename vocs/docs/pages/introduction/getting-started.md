@@ -38,7 +38,7 @@ Reads need no signer. To check an account balance:
 ```rust
 let address: tronz::Address = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t".parse()?;
 let account = provider.get_account(address).await?;
-println!("balance: {} TRX", account.balance.as_trx());
+println!("balance: {} TRX", account.balance);
 ```
 
 ## 3. Add a signer and send TRX

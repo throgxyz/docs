@@ -15,51 +15,60 @@ need it.
 
 ```rust
 use tronz::Trx;
+use tronz::primitives::parse_trx;
 
-// From sun, rejecting negatives — prefer this for user input.
-let a = Trx::from_sun(1_000_000)?;        // 1 TRX
+// From a raw sun value, rejecting negatives — prefer this for user input.
+let a = Trx::from_sun(1_000_000)?;   // 1 TRX
 
-// From a floating-point TRX value.
-let b = Trx::from_trx(1.5)?;              // 1.5 TRX = 1_500_000 sun
+// From a decimal TRX string — exact, no floating point.
+let b: Trx = "1.5".parse()?;         // 1.5 TRX = 1_500_000 sun
+let c = parse_trx("1.5")?;           // same, alloy-style free-function
 
 // Zero.
 let zero = Trx::ZERO;
 ```
 
 :::warning
-`Trx::from_sun` and `Trx::from_trx` return `Result` and **reject negative or
-non-finite values**. There is also `Trx::from_sun_unchecked`, which allows
-negative values — it exists only so malformed on-chain data round-trips without
-panicking. Don't use it for user-facing input.
+`Trx::from_sun` returns `Result` and **rejects negative values**. Parsing a
+string likewise rejects negatives and truncates fractional digits beyond sun
+precision (6 places), matching alloy's `parse_units`. There is also
+`Trx::from_sun_unchecked`, which allows negative values — it exists only so
+malformed on-chain data round-trips without panicking. Don't use it for
+user-facing input.
 :::
 
 ## Reading amounts
 
 ```rust
-let amount = Trx::from_sun(2_500_000)?;
+let amount: Trx = "2.5".parse()?;
 
 amount.as_sun(); // 2_500_000  (exact i64)
-amount.as_trx(); // 2.5        (f64, lossy for very large amounts)
 ```
 
-`Display` formats as TRX:
+`Display` formats as a fixed-precision decimal with exactly 6 fractional digits
+— exact (no `f64`) and with no unit suffix:
 
 ```rust
-println!("{}", Trx::from_sun(1_500_000)?); // "1.5 TRX"
+use tronz::primitives::format_trx;
+
+println!("{}", Trx::from_sun(1_500_000)?);   // "1.500000"
+let s = format_trx(Trx::from_sun(1)?);       // "0.000001"
 ```
 
 ## Arithmetic
 
-`Trx` implements `Add` and `Sub`, plus checked variants that return `None` on
-`i64` overflow:
+`Trx` implements `Add` and `Sub`, which **panic on `i64` overflow or a negative
+result**. Use the `checked_*` variants — which return `None` instead — whenever
+a value could be out of range:
 
 ```rust
-let a = Trx::from_trx(1.0)?;
-let b = Trx::from_trx(0.5)?;
+let a: Trx = "1".parse()?;
+let b: Trx = "0.5".parse()?;
 
-let sum = a + b;                  // 1.5 TRX
-let diff = a - b;                 // 0.5 TRX
-let checked = a.checked_add(b);   // Some(1.5 TRX)
+let sum = a + b;                 // 1.5 TRX  (panics on overflow)
+let diff = a - b;                // 0.5 TRX  (panics if the result is negative)
+let checked = a.checked_add(b);  // Some(1.5 TRX)
+let under = b.checked_sub(a);    // None — would be negative
 ```
 
 It is also `Ord`, so amounts compare and `min`/`max` directly — handy when

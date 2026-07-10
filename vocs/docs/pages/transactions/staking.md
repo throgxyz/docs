@@ -15,7 +15,7 @@ use tronz::primitives::ResourceCode;
 # async fn run(provider: impl tronz::TronProvider) -> anyhow::Result<()> {
 let pending = provider
     .freeze_balance()
-    .amount(Trx::from_trx(10.0)?)
+    .amount("10".parse()?)
     .resource(ResourceCode::Energy)
     .send()
     .await?;
@@ -37,7 +37,7 @@ use tronz::primitives::ResourceCode;
 
 # async fn run(provider: impl tronz::TronProvider, me: tronz::Address, receiver: tronz::Address) -> anyhow::Result<()> {
 let max = provider.get_can_delegate_max(me, ResourceCode::Energy).await?;
-let amount = Trx::from_trx(10.0)?.min(max);
+let amount = "10".parse::<Trx>()?.min(max);
 
 let pending = provider
     .delegate_resource()
@@ -84,7 +84,7 @@ use tronz::primitives::ResourceCode;
 // Start unstaking.
 provider
     .unfreeze_balance()
-    .amount(Trx::from_trx(10.0)?)
+    .amount("10".parse()?)
     .resource(ResourceCode::Energy)
     .send()
     .await?;
