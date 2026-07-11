@@ -6,8 +6,8 @@ export const sidebar: Sidebar = [
     text: 'Introduction',
     items: [
       { text: 'Installation', link: '/introduction/installation' },
-      { text: 'Why tronz', link: '/introduction/why-tronz' },
       { text: 'Getting Started', link: '/introduction/getting-started' },
+      { text: 'Why tronz', link: '/introduction/why-tronz' },
     ],
   },
   {

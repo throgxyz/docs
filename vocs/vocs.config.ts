@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   topNav: [
     { text: 'Docs', link: '/introduction/getting-started' },
-    { text: 'Examples', link: '/examples/transfers/transfer_trx' },
+    { text: 'Examples', link: '/examples/queries/README' },
     { text: 'docs.rs', link: 'https://docs.rs/tronz/latest/tronz/' },
     {
       text: '0.3.0',
@@ -33,7 +33,7 @@ export default defineConfig({
     },
   ],
   editLink: {
-    link: 'https://github.com/throgxyz/tronz/edit/main/docs/vocs/docs/pages/:path',
+    link: 'https://github.com/throgxyz/docs/edit/main/vocs/docs/pages/:path',
     text: 'Suggest changes on GitHub',
   },
 })

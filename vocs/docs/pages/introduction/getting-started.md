@@ -8,7 +8,7 @@ your first transaction on the TRON **Nile testnet**.
 ```sh
 cargo new tronz-demo
 cd tronz-demo
-cargo add tronz --features full
+cargo add tronz
 cargo add tokio --features full
 cargo add anyhow
 ```

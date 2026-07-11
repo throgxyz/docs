@@ -1,18 +1,18 @@
 # Installation
 
 [tronz](https://github.com/throgxyz/tronz) is published as a meta-crate that
-re-exports its sub-crates. The quickest way to get everything is the `full`
-feature:
+re-exports its sub-crates. Its default feature set includes the TLS gRPC
+provider, contract support, and the local signer:
 
 ```sh
-cargo add tronz --features full
+cargo add tronz
 ```
 
 Or add it to your `Cargo.toml` directly:
 
 ```toml
 [dependencies]
-tronz = { version = "0.3", features = ["full"] }
+tronz = "0.3"
 ```
 
 tronz is async-first and built on [tokio](https://tokio.rs), so you will also
@@ -24,8 +24,9 @@ cargo add tokio --features full
 
 ## Features
 
-The `tronz` meta-crate exposes its functionality behind feature flags so you
-only compile what you use:
+The `tronz` meta-crate exposes additional functionality behind feature flags so
+you only compile what you use. `full` is currently an alias for the default
+feature set; mnemonic, keystore, and AWS support remain opt-in:
 
 | Feature | Enables |
 | --- | --- |
