@@ -73,7 +73,7 @@ async fn main() -> anyhow::Result<()> {
         .send()
         .await?;
 
-    println!("tx_id: 0x{}", hex::encode(pending.tx_id()));
+    println!("tx_id: {:#x}", pending.tx_id());
 
     let info = pending.get_receipt().await?;
     println!("confirmed in block {}: {:?}", info.block_number, info.status);

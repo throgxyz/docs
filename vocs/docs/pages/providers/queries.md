@@ -11,7 +11,7 @@ all.
 let block = provider.get_now_block().await?;
 println!("number    : {}", block.number);
 println!("timestamp : {} ms", block.timestamp);
-println!("hash      : 0x{}", hex::encode(block.hash));
+println!("hash      : {:#x}", block.hash);
 # Ok(()) }
 ```
 

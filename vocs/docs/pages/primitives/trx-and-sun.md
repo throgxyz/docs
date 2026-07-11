@@ -28,14 +28,25 @@ let c = parse_trx("1.5")?;           // same, alloy-style free-function
 let zero = Trx::ZERO;
 ```
 
+Accepted decimal input follows alloy's unit helpers: `.5`, `1.`, `_`
+separators, and an empty string are accepted. More than 6 fractional digits are
+truncated rather than rounded:
+
+```rust
+assert_eq!(".5".parse::<Trx>()?.as_sun(), 500_000);
+assert_eq!("1_000".parse::<Trx>()?.as_sun(), 1_000_000_000);
+assert_eq!("1.0000009".parse::<Trx>()?.as_sun(), 1_000_000);
+```
+
 :::warning
 `Trx::from_sun` returns `Result` and **rejects negative values**. Parsing a
 string likewise rejects negatives and truncates fractional digits beyond sun
-precision (6 places), matching alloy's `parse_units`. There is also
-`Trx::from_sun_unchecked`, which allows negative values — it exists only so
-malformed on-chain data round-trips without panicking. Don't use it for
-user-facing input.
+precision (6 places), matching alloy's `parse_units`.
 :::
+
+Amounts above `i64::MAX` sun are rejected because TRON protobuf amount fields
+are signed 64-bit integers. The largest accepted value is
+`9223372036854.775807` TRX.
 
 ## Reading amounts
 

@@ -29,10 +29,13 @@ only compile what you use:
 
 | Feature | Enables |
 | --- | --- |
-| `full` | Everything below |
-| `provider` | The provider, gRPC transport, and fillers |
-| `signer` | `TronSigner` and `LocalSigner` |
-| `contract` | TRC20 / TRC721 bindings and `tron_sol!` (implies `provider`) |
+| `full` | The default feature set: TLS gRPC transport, contracts, and local signer |
+| `provider-grpc-tls` | The provider and gRPC transport with TLS support |
+| `provider-grpc` | The provider and gRPC transport without enabling TLS |
+| `contract` | TRC20 / TRC721 bindings and `tron_sol!` |
+| `signer-local` | `LocalSigner` (included in the default feature set) |
+| `signer-mnemonic` | BIP-39 mnemonic and BIP-44 HD key derivation |
+| `signer-keystore` | Web3 Secret Storage V3 keystore support |
 | `signer-aws` | AWS KMS-backed `AwsSigner` |
 
 For a complete and up-to-date list, see the

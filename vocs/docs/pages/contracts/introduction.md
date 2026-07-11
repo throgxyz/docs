@@ -14,6 +14,8 @@ use tronz::contract::Trc20Ext;
 | Item | Purpose |
 | --- | --- |
 | [`Trc20Ext` / `Trc20Instance`](/contracts/trc20) | High-level TRC20 token interface |
+| [`Trc721Ext` / `Trc721Instance`](/contracts/trc721) | High-level TRC721 NFT interface |
+| [`tron_sol!`](/contracts/tron-sol) | Alpha: generate provider-bound, typed contract bindings |
 | `ContractInstance` / `ContractExt` | Generic provider-bound contract handle |
 | `CallBuilder` | Build, simulate, and send a single contract call |
 | `DeployBuilder` | Deploy a new contract |
@@ -44,3 +46,8 @@ prefix automatically (see [Addresses](/primitives/address)).
   [Fillers](/providers/fillers)).
 
 Start with [TRC20 tokens](/contracts/trc20) for the most common case.
+
+For custom contracts, use [`tron_sol!`](/contracts/tron-sol) when the ABI is
+known at compile time, or the
+[dynamic ABI example](/examples/contracts/contract_dynamic_abi) when it is only
+known at runtime.

@@ -53,8 +53,8 @@ let provider = ProviderBuilder::new()
 | `with_signer(signer)` | Attaches a signer so `.send()` works |
 | `maybe_api_key(Option<...>)` | Optionally attach a TronGrid API key |
 
-`with_recommended_fillers()` is exactly
-`with_tapos().with_fee_limit(Trx::from_sun_unchecked(20_000_000))`. See
+`with_recommended_fillers()` is equivalent to adding TAPOS and calling
+`with_fee_limit("20".parse::<Trx>()?)`. See
 [Fillers](/providers/fillers) for what each one does.
 
 ## API keys

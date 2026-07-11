@@ -29,7 +29,7 @@ let pending = provider
     .await?;
 
 // The transaction id is available immediately after broadcast.
-println!("tx_id: 0x{}", hex::encode(pending.tx_id()));
+println!("tx_id: {:#x}", pending.tx_id());
 # Ok(()) }
 ```
 

@@ -49,7 +49,9 @@ export const sidebar: Sidebar = [
     text: 'Contracts',
     items: [
       { text: 'Introduction', link: '/contracts/introduction' },
+      { text: 'tron_sol! bindings', link: '/contracts/tron-sol' },
       { text: 'TRC20 tokens', link: '/contracts/trc20' },
+      { text: 'TRC721 tokens', link: '/contracts/trc721' },
     ],
   },
   {

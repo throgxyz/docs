@@ -34,12 +34,12 @@ let provider = ProviderBuilder::new()
 
 ```rust
 # use tronz::{ProviderBuilder, Trx};
-# fn run() {
+# fn run() -> Result<(), tronz::primitives::AmountError> {
 # let _ =
 ProviderBuilder::new()
     .with_tapos()
-    .with_fee_limit(Trx::from_sun_unchecked(20_000_000)); // 20 TRX
-# }
+    .with_fee_limit("20".parse::<Trx>()?); // 20 TRX
+# Ok(()) }
 ```
 
 ## Available fillers

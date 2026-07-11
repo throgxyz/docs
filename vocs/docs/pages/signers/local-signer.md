@@ -17,7 +17,7 @@ use tronz::LocalSigner;
 let signer = LocalSigner::from_hex("0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80")?;
 
 // From raw 32 bytes.
-let bytes = [0u8; 32];
+let bytes = [1u8; 32];
 let signer = LocalSigner::from_bytes(&bytes)?;
 ```
 
