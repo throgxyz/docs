@@ -1,64 +1,103 @@
 # tronz Docs
 
 Documentation for [tronz](https://github.com/throgxyz/tronz), an idiomatic,
-async-first Rust SDK for the TRON network — inspired by
+async-first Rust SDK for the TRON network, inspired by
 [alloy](https://github.com/alloy-rs/alloy).
 
-The site is built with [vocs](https://vocs.dev).
+View the documentation at
+**[throgxyz.github.io/docs](https://throgxyz.github.io/docs/)**.
+
+The site is built with [Vocs](https://vocs.dev).
 
 ## Development
 
-Clone with submodules (the [examples](https://github.com/throgxyz/examples)
-repo is vendored at `lib/examples`):
+Clone the repository with its
+[examples](https://github.com/throgxyz/examples) submodule:
 
 ```sh
 git clone --recurse-submodules https://github.com/throgxyz/docs.git
-# or, in an existing clone:
+cd docs
+```
+
+For an existing clone:
+
+```sh
 git submodule update --init
 ```
 
-Then run the dev server:
+Install dependencies and start the development server:
 
 ```sh
 cd vocs
 npm install
-npm run dev    # open the printed local URL
+npm run dev
 ```
 
-> Note: vocs 2 / waku currently require an LTS Node (20 or 22). Newer versions
-> (e.g. Node 25) fail during static generation with a `react-server` error.
+Vocs 2 and Waku currently require an LTS version of Node.js, preferably Node
+20 or 22. Newer unsupported versions may fail during static generation.
+
+## Documentation
+
+Hand-written documentation lives in:
+
+```text
+vocs/docs/pages/
+```
+
+The main site configuration and navigation are defined in:
+
+```text
+vocs/vocs.config.ts
+vocs/sidebar.ts
+```
+
+To suggest a documentation change, edit the relevant hand-written page and
+open a pull request.
 
 ## Examples
 
-Example pages are generated from the `lib/examples` submodule. To refresh them
-after the examples repo changes:
+Runnable examples come from the
+[throgxyz/examples](https://github.com/throgxyz/examples) repository, included
+as the `lib/examples` git submodule.
+
+Refresh generated example pages with:
 
 ```sh
 ./scripts/update.sh
 ```
 
-This syncs the submodule to `main`, copies each example's source into
-`vocs/docs/snippets/<category>/examples/`, generates one page per example plus a
-category landing page under `vocs/docs/pages/examples/`, and regenerates the
-sidebar items in `vocs/example-items.ts`.
+The update script:
 
-Edit the per-category descriptions and ordering in
-`vocs/docs/pages/templates/<category>/README.mdx` — the generated pages and
-sidebar are derived from these. Do not edit generated files directly.
+1. Syncs the examples submodule.
+2. Copies example sources into `vocs/docs/snippets/`.
+3. Generates pages under `vocs/docs/pages/examples/`.
+4. Regenerates `vocs/example-items.ts`.
 
-## Structure
+Edit category descriptions and ordering in:
 
-- `vocs/vocs.config.ts` — site config (title, nav, socials).
-- `vocs/sidebar.ts` — sidebar layout (imports generated `example-items.ts`).
-- `vocs/example-items.ts` — generated Examples sidebar (do not edit).
-- `vocs/docs/pages/` — documentation pages (`.md` / `.mdx`).
-- `vocs/docs/pages/templates/` — hand-written per-category example templates.
-- `vocs/docs/pages/examples/` — generated example pages (do not edit).
-- `vocs/docs/snippets/` — example sources, embedded via `// [!include ~/snippets/...]`.
-- `scripts/update.sh` — regenerates the snippets, example pages, and sidebar.
-- `lib/examples` — `throgxyz/examples` git submodule (source of the examples).
+```text
+vocs/docs/pages/templates/<category>/README.mdx
+```
+
+Do not edit these generated files directly:
+
+```text
+vocs/docs/pages/examples/
+vocs/docs/snippets/
+vocs/example-items.ts
+```
+
+## Contributing
+
+Contributions are welcome. Please open an issue or pull request in this
+repository for documentation changes.
+
+For SDK changes, use the
+[tronz repository](https://github.com/throgxyz/tronz).
 
 ## License
 
-Licensed under either of [Apache License, Version 2.0](../tronz/LICENSE-APACHE)
-or [MIT license](../tronz/LICENSE-MIT) at your option.
+Licensed under either the
+[Apache License, Version 2.0](https://github.com/throgxyz/tronz/blob/main/LICENSE-APACHE)
+or the [MIT License](https://github.com/throgxyz/tronz/blob/main/LICENSE-MIT),
+at your option.
