@@ -1,12 +1,13 @@
-# `tron_sol!` bindings
+# Solidity bindings with `tron_sol!`
 
 `tron_sol!` generates alloy-compatible Solidity types together with a
 provider-bound contract instance for TRON. Use it when you have a Solidity
 interface or JSON ABI and want typed calls, return values, and events.
 
-:::warning Alpha API
-`tron_sol!` is currently an **alpha API**. Generated names, attributes, and the
-provider-bound instance surface may change between minor releases. Pin your
+:::warning
+**Alpha API:** `tron_sol!` is currently experimental. Generated names,
+attributes, and the provider-bound instance surface may change between minor
+releases. Pin your
 `tronz` version when using generated bindings in production and review the
 changelog before upgrading.
 :::

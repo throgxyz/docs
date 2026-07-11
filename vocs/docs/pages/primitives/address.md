@@ -1,4 +1,4 @@
-# Addresses
+# Address
 
 A TRON address is **21 bytes**: a single `0x41` prefix byte followed by the
 20-byte EVM-style body (`keccak256(pubkey)[12..]`). It is most commonly shown in
