@@ -1,5 +1,10 @@
 # tronz Docs
 
+[![Docs](https://img.shields.io/badge/docs-online-4c1)](https://throgxyz.github.io/docs/)
+[![CI](https://github.com/throgxyz/docs/actions/workflows/book.yml/badge.svg)](https://github.com/throgxyz/docs/actions/workflows/book.yml)
+[![tronz 0.3.x](https://img.shields.io/badge/tronz-0.3.x-4c1)](https://github.com/throgxyz/tronz/releases/tag/v0.3.0)
+[![license](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)](https://github.com/throgxyz/tronz#license)
+
 Documentation for [tronz](https://github.com/throgxyz/tronz), an idiomatic,
 async-first Rust SDK for the TRON network, inspired by
 [alloy](https://github.com/alloy-rs/alloy).
