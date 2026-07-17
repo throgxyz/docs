@@ -36,7 +36,7 @@ use tronz::{LocalSigner, ProviderBuilder, TRONGRID_NILE};
 let signer = LocalSigner::from_hex(&std::env::var("TRON_PRIVATE_KEY")?)?;
 
 let provider = ProviderBuilder::new()
-    .with_recommended_fillers()   // TAPOS + default 20 TRX fee limit
+    .with_recommended_fillers()   // default 20 TRX fee limit
     .with_signer(signer)          // sign before broadcast
     .on_grpc(TRONGRID_NILE)
     .await?;
@@ -47,14 +47,17 @@ let provider = ProviderBuilder::new()
 
 | Method | Effect |
 | --- | --- |
-| `with_recommended_fillers()` | Adds the TAPOS filler **and** a 20 TRX default fee-limit filler |
-| `with_tapos()` | Adds only the TAPOS filler (reference block, required before broadcast) |
+| `with_recommended_fillers()` | Adds a 20 TRX default fee-limit filler |
+| `with_tapos()` | Adds the TAPOS filler (reference block + expiration) |
 | `with_fee_limit(Trx)` | Sets a default `fee_limit` for contract operations |
 | `with_signer(signer)` | Attaches a signer so `.send()` works |
 | `maybe_api_key(Option<...>)` | Optionally attach a TronGrid API key |
 
-`with_recommended_fillers()` is equivalent to adding TAPOS and calling
-`with_fee_limit("20".parse::<Trx>()?)`. See
+`with_recommended_fillers()` is equivalent to calling
+`with_fee_limit("20".parse::<Trx>()?)`. It does **not** add the TAPOS filler:
+every currently supported transaction is built by a node endpoint that already
+fills TAPOS, so an extra `get_now_block` round-trip would be wasted work. Add
+`with_tapos()` explicitly if you construct transactions that need it. See
 [Fillers](/providers/fillers) for what each one does.
 
 ## API keys

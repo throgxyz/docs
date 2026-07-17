@@ -19,7 +19,7 @@ export default defineConfig({
     { text: 'Examples', link: '/examples/queries/README' },
     { text: 'docs.rs', link: 'https://docs.rs/tronz/latest/tronz/' },
     {
-      text: '0.3.0',
+      text: '0.4.0',
       items: [
         {
           text: 'Changelog',

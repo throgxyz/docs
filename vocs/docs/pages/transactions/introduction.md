@@ -47,9 +47,11 @@ Every `.send()` needs:
 1. **A signer** — attach one with `.with_signer()` on the
    [builder](/providers/provider-builder). Without it, `.send()` returns a
    "no signer" error.
-2. **The TAPOS filler** — add it with `.with_tapos()` or
-   `.with_recommended_fillers()`. TRON transactions must reference a recent
-   block.
+2. **(recommended) A fee limit** for contract operations — add one with
+   `.with_fee_limit()` or `.with_recommended_fillers()`. TAPOS (the recent-block
+   reference every TRON transaction needs) is filled by the node endpoint that
+   builds the transaction, so no client-side filler is required for it; add
+   `.with_tapos()` only if you want tronz to fill those fields itself.
 
 The `owner` (sender) defaults to the signer's address, so you rarely set it
 explicitly. You can override it with `.owner(addr)` when signing on behalf of

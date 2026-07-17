@@ -34,6 +34,7 @@ export const sidebar: Sidebar = [
       { text: 'gRPC transport', link: '/providers/grpc-transport' },
       { text: 'Fillers', link: '/providers/fillers' },
       { text: 'Reading chain state', link: '/providers/queries' },
+      { text: 'SolidityNode provider', link: '/providers/solidity-node' },
     ],
   },
   {

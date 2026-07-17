@@ -10,8 +10,10 @@ borrows this pattern directly from alloy: you stack fillers on the
 
 A TRON transaction needs more than just "to" and "amount". It must reference a
 recent block (TAPOS, for replay protection and expiry), and contract operations
-need a `fee_limit`. Rather than make you fetch the latest block and pick a fee
-each time, fillers do it for you.
+need a `fee_limit`. The node endpoints that build the currently supported
+transactions already fill TAPOS for you, so the recommended set only adds a
+default `fee_limit`. A `with_tapos()` filler is still available for cases where
+you want tronz to fill those fields itself.
 
 ## The recommended set
 
@@ -37,10 +39,13 @@ let provider = ProviderBuilder::new()
 # fn run() -> Result<(), tronz::primitives::AmountError> {
 # let _ =
 ProviderBuilder::new()
-    .with_tapos()
     .with_fee_limit("20".parse::<Trx>()?); // 20 TRX
 # Ok(()) }
 ```
+
+It does **not** add the TAPOS filler: the node endpoints that build the
+currently supported transactions already fill TAPOS. Add `with_tapos()`
+explicitly if you build transactions that need tronz to fill those fields.
 
 ## Available fillers
 
@@ -66,7 +71,6 @@ use tronz::{ProviderBuilder, Trx, TRONGRID_NILE};
 
 # async fn run() -> anyhow::Result<()> {
 let provider = ProviderBuilder::new()
-    .with_tapos()
     .with_fee_limit("100".parse()?)  // higher cap for heavy contract calls
     .on_grpc(TRONGRID_NILE)
     .await?;

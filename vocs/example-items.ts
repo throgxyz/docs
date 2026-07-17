@@ -38,6 +38,11 @@ export const exampleItems: SidebarItem[] = [
         { text: 'Type-safe bindings from a Solidity interface', link: '/examples/sol-macro/tron_sol_bindings' },
         { text: 'Query typed events with generated filters', link: '/examples/sol-macro/tron_sol_events' },
     ]},
+    { text: 'Solidity node', collapsed: true, link: '/examples/solidity/README', items: [
+        { text: 'Read solidified blocks, accounts, and receipts', link: '/examples/solidity/solidity_query' },
+        { text: 'Constant call against solidified state', link: '/examples/solidity/solidity_constant_call' },
+        { text: 'Broadcast, then wait for solidification', link: '/examples/solidity/solidity_await' },
+    ]},
     { text: 'Staking', collapsed: true, link: '/examples/staking/README', items: [
         { text: 'Stake 2.0: freeze, delegate, claim', link: '/examples/staking/stake' },
         { text: 'Stake 1.0 (legacy): freeze and unfreeze', link: '/examples/staking/stake_v1' },
