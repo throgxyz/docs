@@ -20,6 +20,10 @@ let token = provider.trc20(usdt);
 ```
 
 `provider.trc20(address)` returns a `Trc20Instance` bound to that contract.
+`.trc20()` is available on any read provider, so a
+[`SolidityProvider`](/providers/solidity-node) yields an instance that reads
+solidified state (see the
+[solidified TRC20 example](/examples/solidity/solidity_trc20)).
 
 ## Reading token data
 

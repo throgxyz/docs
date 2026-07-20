@@ -45,6 +45,41 @@ prefix automatically (see [Addresses](/primitives/address)).
   they consume **energy**. Set an appropriate `fee_limit` (see
   [Fillers](/providers/fillers)).
 
+### Reading against any provider
+
+Contract handles are generic over `ContractReadProvider`, a read capability
+implemented by **both** FullNode providers and the read-only
+[`SolidityProvider`](/providers/solidity-node). The same `Trc20Instance`,
+`Trc721Instance`, `tron_sol!` binding, and `ContractInstance` therefore read
+either latest or solidified (irreversible) state, without ever gaining write
+ability against a SolidityNode:
+
+```rust
+# async fn run(solidity: tronz::SolidityProvider, usdt: tronz::Address, who: tronz::Address) -> anyhow::Result<()> {
+use tronz::contract::Trc20Ext;
+
+// Bound to a SolidityProvider: reads solidified state, cannot send.
+let balance = solidity.trc20(usdt).balance_of(who).await?;
+# Ok(()) }
+```
+
+### Setting `msg.sender` on a read
+
+A read-only call made **without** a signer defaults `msg.sender` to the **zero
+address** — most `view` functions ignore the caller, so this is usually fine.
+When a view branches on `msg.sender` (allowances, per-caller quotes, access
+checks), set it explicitly with `.caller(address)`, available on
+`ContractInstance`, `CallBuilder`, and `tron_sol!` call builders:
+
+```rust
+# async fn run(instance: tronz::contract::ContractInstance<impl tronz::TronProvider>, caller: tronz::Address) {
+let instance = instance.caller(caller); // presents `caller` as msg.sender
+# let _ = instance;
+# }
+```
+
+See the [`.caller()` example](/examples/contracts/contract_call_as).
+
 Start with [TRC20 tokens](/contracts/trc20) for the most common case.
 
 For custom contracts, use [`tron_sol!`](/contracts/tron-sol) when the ABI is

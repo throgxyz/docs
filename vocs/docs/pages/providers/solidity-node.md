@@ -56,10 +56,15 @@ let solidity = SolidityProvider::builder()
 ## What you can read
 
 The read surface mirrors the FullNode's, restricted to what `WalletSolidity`
-exposes: `get_now_block`, `get_block_by_number`, `get_account`,
-`get_transaction`, `get_transaction_info`, `get_transaction_info_by_block_num`,
-`get_transaction_count_by_block_num`, `trigger_constant_contract`, and
-`estimate_energy`.
+exposes: blocks (`get_now_block`, `get_block_by_number`), accounts
+(`get_account`), transactions and receipts (`get_transaction`,
+`get_transaction_info`, `get_transaction_info_by_block_num`,
+`get_transaction_count_by_block_num`), contract reads
+(`trigger_constant_contract`, `estimate_energy`), and — since 0.4.1 — the
+governance and stake/delegation queries (`list_witnesses`,
+`get_paginated_now_witness_list`, `get_delegated_resource_index`,
+`get_can_delegate_max`, `get_available_unfreeze_count`,
+`get_can_withdraw_unfreeze_amount`).
 
 ```rust
 # async fn run(solidity: tronz::SolidityProvider, address: tronz::Address) -> anyhow::Result<()> {
@@ -67,6 +72,25 @@ let account = solidity.get_account(address).await?;
 println!("solidified balance: {} TRX", account.balance);
 # Ok(()) }
 ```
+
+## Typed contract reads
+
+`SolidityProvider` implements `ContractReadProvider`, so the same typed handles
+you use on a FullNode — `.trc20()`, `.trc721()`, `tron_sol!` bindings, and
+`ContractInstance` — bind to it and read solidified state. No manual
+`trigger_constant_contract` needed:
+
+```rust
+# async fn run(solidity: tronz::SolidityProvider, usdt: tronz::Address, who: tronz::Address) -> anyhow::Result<()> {
+use tronz::contract::Trc20Ext;
+
+let balance = solidity.trc20(usdt).balance_of(who).await?;
+# Ok(()) }
+```
+
+See the [typed TRC20 example](/examples/solidity/solidity_trc20). For a raw
+constant call, see the
+[constant-call example](/examples/solidity/solidity_constant_call).
 
 ## Waiting for finality
 

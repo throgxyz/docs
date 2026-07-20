@@ -49,8 +49,14 @@ let balance = token.balanceOf(address).call().await?;
 # Ok(()) }
 ```
 
-Read-only calls use `.call().await`. With a signer-backed provider,
-state-changing calls use `.send().await` and return a
+The instance is generic over the provider's read capability, so binding to a
+read-only [`SolidityProvider`](/providers/solidity-node) yields typed calls
+against solidified state (the `.send()` write path is simply unavailable there).
+
+Read-only calls use `.call().await`. When a `view` branches on `msg.sender`, set
+it with `.caller(address)` on the call builder; without a signer it defaults to
+the zero address. With a signer-backed provider, state-changing calls use
+`.send().await` and return a
 [`PendingTransaction`](/transactions/lifecycle):
 
 ```rust

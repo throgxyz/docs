@@ -104,6 +104,7 @@ reverts. See [Transaction lifecycle](/transactions/lifecycle).
 | `chain_parameters()` | `HashMap<String, i64>` of network parameters |
 | `get_contract_info(addr)` | Contract metadata incl. deployed bytecode |
 | `list_witnesses()` | All super representatives and candidates |
+| `get_paginated_now_witness_list(offset, limit)` | A page of SRs sorted by live vote count |
 | `get_can_withdraw_unfreeze_amount(addr, ts_ms)` | TRX withdrawable from expired unfreezes |
 | `get_available_unfreeze_count(addr)` | Remaining unfreeze slots (max 32) |
 | `estimate_energy(params)` | Estimated energy for a contract call |
