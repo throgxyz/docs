@@ -1,0 +1,13 @@
+{
+  // Static-assets-only Worker for the tronz docs site.
+  // `vocs build` emits the static site into ./dist/public.
+  "name": "tronz-docs",
+  "compatibility_date": "2026-07-21",
+  "assets": {
+    "directory": "./dist/public",
+    // Serve clean URLs and let deep links / refreshes resolve to the
+    // per-route index.html that vocs generates.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
