@@ -3,7 +3,7 @@
   // The deploy step runs `npx wrangler deploy` from the repository root, so the
   // assets directory is referenced relative to the root. `vocs build` emits the
   // static site into vocs/dist/public.
-  "name": "tronz-docs",
+  "name": "docs",
   "compatibility_date": "2026-07-21",
   "assets": {
     "directory": "./vocs/dist/public",
